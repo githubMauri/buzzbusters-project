@@ -2,8 +2,10 @@
 
 #Video Presentacion
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EghJFnFiR4o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+<video width="640" height="480" controls>
+  <source src="https://www.youtube.com/watch?v=EghJFnFiR4o&t=1s" type="video/mp4">
+  Tu navegador no soporta el elemento video.
+</video>
 
 # BUZZBUSTERS PROJECT
 
