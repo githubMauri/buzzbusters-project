@@ -10,6 +10,24 @@ This project utilizes deep learning techniques for mosquito detection. The solut
 
 The solution also includes a mobile application for the public to report mosquito sightings and track the progress of mosquito control efforts in their area.
 
+## Model Training
+
+The model was trained on Google Cloud Platform using the AutoML Edge tool. A dataset of 2,000 mosquito images was used, manually labeled with the classes "aegypti" and "culex". The dataset was divided into three sets: training (80%), validation (10%), and testing (10%). Random splitting was used to ensure the representativeness of the datasets.
+
+The model was trained for 8 hours and 34 minutes in the us-central1 region using 8 hours of node processing. The model achieved an average precision of 0.722, a precision of 98.5%, and a recall of 96.5%.
+
+This model was specifically trained for image object detection, using the AutoML Edge algorithm. Encryption was performed using a key managed by Google. The training data was stored in Google Cloud Storage, and Vertex AI and Google AutoML tools were used to implement and manage the model. For integration with the mobile application, Flutter and Dart were used, and Firebase was integrated for backend services.
+
+
+<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/Vertex%20AI%20%E2%80%93%20aegypti-project%20%E2%80%93%20Google%20Cloud%20Console.png?raw=true" alt="model-training" width="800" height="400">
+
+
+<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/Vertex%20AI%20%E2%80%93%20aegypti-project%20%E2%80%93%20details.png?raw=true" alt="model-training" width="500" height="500">
+
+<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/aegypti-mo%E2%80%A6bucket_01%20%E2%80%93%20Detalles%20del%20bucket%20%E2%80%93%20Cloud%C2%A0Storage%20%E2%80%93%20aegypti-project%20%E2%80%93%20Consola%20de%20Google%20Clo.png?raw=true" alt="model-training" width="600" height="400">
+
+For testing and deployment, we used a container approach. The trained model was exported as a TensorFlow SavedModel to be run on a Docker container. This allowed for easy deployment and scalability of the model on different platforms and environments. The containerization was done using Docker, which allowed us to package the model and its dependencies into a single unit that could be easily deployed on a variety of systems. This approach also ensures that the model is portable and can be easily moved between different cloud services or on-premises environments. The containerized model can be deployed on a Kubernetes cluster or any other container orchestration platform.
+
 ## Installation and configuration of the project
 This project uses Python and Docker to create a real-time mosquito detection and monitoring system. To install and configure the project, follow the steps below:
 
@@ -171,5 +189,3 @@ python video_testing.py
 </code>
 </pre>
 
-
-<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/images/image1.jpg" alt="model-training" width="500" height="500">
