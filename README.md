@@ -1,77 +1,74 @@
-# PROYECTO BUZZBUSTERS
+# BUZZBUSTERS PROJECT
 
-# Sistema de Detección y Monitoreo de Mosquitos
-## Descripción
+# Mosquito Detection and Monitoring System
+## Description
+The Mosquito Detection and Monitoring System is a solution developed to prevent and control mosquito-borne diseases in the Santa Cruz region of Bolivia. The system uses image processing techniques and machine learning algorithms to detect the density and distribution of mosquitoes in real-time, allowing for early detection and prevention efforts.
 
-El Sistema de Detección y Monitoreo de Mosquitos es una solución desarrollada para prevenir y controlar enfermedades transmitidas por mosquitos en la región de Santa Cruz, Bolivia. El sistema utiliza técnicas de procesamiento de imágenes y algoritmos de aprendizaje automático para detectar la densidad y distribución de mosquitos en tiempo real, lo que permite la detección temprana y los esfuerzos de prevención.
+The system includes a network of mosquito traps equipped with Raspberry Pi 3 for image capture and processing. The images are sent to Google Cloud Storage, where they are processed by machine learning models trained on Google AutoML. The results are then sent to Firebase, where they are displayed on an accessible dashboard for healthcare professionals and local authorities.
 
-El sistema incluye una red de trampas para mosquitos equipadas con Raspberry Pi 3 para la captura y el procesamiento de imágenes. Las imágenes se envían a Google Cloud Storage, donde son procesadas por modelos de aprendizaje automático entrenados en Google AutoML. Los resultados se envían luego a Firebase, donde se muestran en un panel accesible para profesionales de la salud y autoridades locales.
+This project utilizes deep learning techniques for mosquito detection. The solution employs a camera and detection algorithm to identify and count mosquitoes in real-time. Detection is performed using a model trained on Google AutoML Vision. The application runs on a Raspberry Pi 3 and utilizes Google cloud services such as Cloud Storage and Firebase for storage and visualization of the results. The solution can be easily scaled using Docker containers and scalable cloud services like Vertex AI.
 
-Este proyecto utiliza técnicas de aprendizaje profundo (Deep Learning) para la detección de mosquitos. La solución utiliza una cámara y un algoritmo de detección para identificar y contar mosquitos en tiempo real. La detección se realiza mediante el uso de un modelo entrenado en Google AutoML Vision. La aplicación se ejecuta en una Raspberry Pi 3 y utiliza servicios en la nube de Google, como Cloud Storage y Firebase, para el almacenamiento y la visualización de los resultados. La solución se puede escalar fácilmente mediante el uso de contenedores Docker y servicios en la nube escalables como Vertex AI.
+The solution also includes a mobile application for the public to report mosquito sightings and track the progress of mosquito control efforts in their area.
 
-La solución también incluye una aplicación móvil para que el público informe avistamientos de mosquitos y haga un seguimiento del progreso de los esfuerzos de control de mosquitos en su área.
+## Installation and configuration of the project
+This project uses Python and Docker to create a real-time mosquito detection and monitoring system. To install and configure the project, follow the steps below:
 
-## Instalación y configuración del proyecto
+### Prerequisites
+This project was developed on Ubuntu 20.4.
+Make sure you have Python 3 and Docker installed on your system before continuing.
 
-Este proyecto utiliza Python y Docker para crear un sistema de detección y monitoreo de mosquitos en tiempo real. Para instalar y configurar el proyecto, siga los siguientes pasos:
-
-Requisitos previos
-Este proyecto fue desarrollado en Ubuntu 20.4
-Asegúrese de tener instalado Python 3 y Docker en su sistema antes de continuar.
-
-### Preparar ambiente de trabajo
-
-Instalar pip: 
+### Prepare workspace
+Install pip:
 <pre>
 <code class="copyable">
 sudo apt install -y python3-pip
 </code>
 </pre>
 
-Instalar otras dependencias: 
+Install other dependencies:
 <pre>
 <code class="copyable">
 sudo apt install build-essential libssl-dev libffi-dev python3-dev
 </code>
 </pre>
 
-Instalar ambiente virtual: 
+Install virtual environment:
 <pre>
 <code class="copyable">
 sudo apt install -y python3-venv
 </code>
 </pre>
 
-Crear ambiente virtual: 
+Create virtual environment:
 <pre>
 <code class="copyable">
 python3.8 -m venv mosquitoes
 </code>
 </pre>
 
-Activar el ambiente virtual: 
+Activate the virtual environment:
 <pre>
 <code class="copyable">
 source mosquitoes/bin/activate
 </code>
 </pre>
 
-### Paso 1: Clonar el repositorio
+### Step 1: Clone the repository
 
-Clone el repositorio del proyecto desde GitHub en su directorio local:
+Clone the project repository from GitHub to your local directory:
 <pre>
 <code class="copyable">
-git clone https://github.com/username/repository.git
+git clone https://github.com/githubMauri/buzzbusters-project.git
 </code>
 </pre>
 
-Ir al directorio del proyecto: 
+Navigate to the project directory:
 <pre>
 cd repository
 </pre>
 
-### Paso 2: Instalar las dependencias
-Este proyecto utiliza las siguientes bibliotecas de Python, que están especificadas en el archivo "requirements.txt":
+### Step 2: Install dependencies
+This project uses the following Python libraries, which are specified in the "requirements.txt" file:
 
 * certifi==2022.12.7
 * charset-normalizer==3.1.0
@@ -81,92 +78,93 @@ Este proyecto utiliza las siguientes bibliotecas de Python, que están especific
 * requests==2.28.2
 * urllib3==1.26.15
 
-Para instalar las dependencias, ejecute el siguiente comando: 
+To install the dependencies, run the following command:
 <pre>
 <code class="copyable">
 pip install -r requirements.txt
 </code>
 </pre>
 
-### Paso 3: Configurar el modelo
-Para ejecutar el modelo, necesita configurar la ubicación del modelo local.
+### Step 3: Configure the model
+To run the model, you need to configure the location of the local model.
 
-El archivo saved_model.pb está en la carpeta "mounted_model".
+The saved_model.pb file is in the "mounted_model" folder.
 
-esta es la ruta donde se encuentra el archivo saved_model.pb en mi computadora
+This is the path where the saved_model.pb file is located on my computer: 
+
 YOUR_LOCAL_MODEL_PATH=/home/iruam/Documentos/deploy-mosquitoes-cpu/mounted_model
 
-Establece la variable YOUR_LOCAL_MODEL_PATH con la ruta donde se encuentra el archivo saved_model.pb en tu computadora: 
+Set the YOUR_LOCAL_MODEL_PATH variable to the path where the saved_model.pb file is located on your computer:
 <pre>
 <code class="copyable">
 YOUR_LOCAL_MODEL_PATH=/path/to/mounted_model
 </code>
 </pre>
 
-### Paso 4: Ejecutar el modelo
-Para ejecutar el modelo en un contenedor de Docker, primero debe descargar la imagen de Docker del contenedor:
+### Step 4: Run the model
+To run the model in a Docker container, you first need to download the Docker image of the container:
 
-Establecer la variable CPU_DOCKER_GCR_PATH: 
+Set the CPU_DOCKER_GCR_PATH variable:
 <pre>
 <code class="copyable">
 export CPU_DOCKER_GCR_PATH=gcr.io/cloud-devrel-public-resources/gcloud-container-1.14.0:latest
 </code>
 </pre>
 
-Descargar la imagen Docker: 
+Download the Docker image:
 <pre>
 <code class="copyable">
 sudo docker pull ${CPU_DOCKER_GCR_PATH}
 </code>
 </pre>
 
-Luego, ejecute el siguiente comando para iniciar el contenedor de Docker y ejecutar el modelo
+Then, run the following command to start the Docker container and run the model:
 
-Establecer el nombre del contenedor: 
+Set the container name:
 <pre>
 <code class="copyable">
 CONTAINER_NAME=automl_high_accuracy_model_cpu
 </code>
 </pre>
 
-Establecer el número del puerto: 
+Set the port number:
 <pre>
 <code class="copyable">
 PORT=8501
 </code>
 </pre>
 
-Ejecutar el contenedor de Docker: 
+Run the Docker container:
 <pre>
 <code class="copyable">
 sudo docker run --rm --name ${CONTAINER_NAME} -p ${PORT}:8501 -v ${YOUR_LOCAL_MODEL_PATH}:/tmp/mounted_model/0001 -t ${CPU_DOCKER_GCR_PATH}
 </code>
 </pre>
 
-### Paso 5: Configurar la cámara (opcional)
-Si está trabajando en Ubuntu y su cámara no es reconocida automáticamente, puede usar el siguiente comando para listar las cámaras disponibles:
+### Step 5: Configure the camera (optional)
+If you are working on Ubuntu and your camera is not automatically recognized, you can use the following command to list the available cameras:
 <pre>
 <code class="copyable">
 v4l2-ctl --list-devices
 </code>
 </pre>
 
-identifique el indice de la camara y cambie el valor en la siguiente linea de codigo
+Identify the index of the camera and change the value in the following line of code:
 <pre>
 <code class="copyable">
 cap = cv2.VideoCapture(1)
 </code>
 </pre>
 
-### Paso 6: Ejecutar proyecto
-Una vez configurado todo ejecutamos el siguiente comando para probar el modelo con una webcam:
+### Step 6: Run the project
+Once everything is configured, execute the following command to test the model with a webcam:
 <pre>
 <code class="copyable">
 python webcam_testing.py
 </code>
 </pre>
 
-Para probar el modelo con un video:
+To test the model with a video:
 <pre>
 <code class="copyable">
 python video_testing.py
