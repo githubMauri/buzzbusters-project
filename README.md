@@ -10,7 +10,7 @@ This project utilizes deep learning techniques for mosquito detection. The solut
 
 The solution also includes a mobile application for the public to report mosquito sightings and track the progress of mosquito control efforts in their area.
 
-## Model Training
+## Model Training V1
 
 The model was trained on Google Cloud Platform using the AutoML Edge tool. A dataset of 2,000 mosquito images was used, manually labeled with the classes "aegypti" and "culex". The dataset was divided into three sets: training (80%), validation (10%), and testing (10%). Random splitting was used to ensure the representativeness of the datasets.
 
@@ -27,6 +27,57 @@ This model was specifically trained for image object detection, using the AutoML
 <img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/aegypti-mo%E2%80%A6bucket_01%20%E2%80%93%20Detalles%20del%20bucket%20%E2%80%93%20Cloud%C2%A0Storage%20%E2%80%93%20aegypti-project%20%E2%80%93%20Consola%20de%20Google%20Clo.png?raw=true" alt="model-training" width="600" height="400">
 
 For testing and deployment, we used a container approach. The trained model was exported as a TensorFlow SavedModel to be run on a Docker container. This allowed for easy deployment and scalability of the model on different platforms and environments. The containerization was done using Docker, which allowed us to package the model and its dependencies into a single unit that could be easily deployed on a variety of systems. This approach also ensures that the model is portable and can be easily moved between different cloud services or on-premises environments. The containerized model can be deployed on a Kubernetes cluster or any other container orchestration platform.
+
+## Model Training V2 (new model trained)
+
+This is our second model trained for the Mosquito Detection and Monitoring project.
+
+This model was trained on a dataset consisting of 10,951 manually labeled mosquito images, categorized into the classes "aegypti" and "culex".
+
+The model has achieved an average precision of 0.705, with a precision of 92.5%. The recall rate, which is 53.8%.
+
+This model was trained using the Google Cloud platform, leveraging the AutoML Edge tool. The dataset was divided into training, validation, and test sets, resulting in a balanced and representative model. The number of images used in each set is as follows: 9,119 training images, 944 validation images, and 888 test images.
+
+The model is provided in TensorFlow SavedModel format, making it easy to implement and deploy in various environments. Additionally, a containerization approach using Docker has been adopted, enabling the model's portability and scalability across different platforms and cloud services.
+
+Key features:
+
+Average precision: 0.705
+Precision: 92.5%
+Recall: 53.8%
+Total number of images: 10,951
+Training images: 9,119
+Validation images: 944
+Test images: 888
+
+Labels:
+
+culex: 0.711
+aegypti: 0.703
+
+Training time:
+
+Budget (original): 24 hours of node
+Budget (actual): 24 hours of node
+Training time: 1 day and 37 minutes
+
+Data Split:
+
+Random split (80/10/10)
+Total number of samples: 10,951
+Training samples: 9,119 (83.3%)
+Validation samples: 944 (8.6%)
+Test samples: 888 (8.1%)
+Algorithm used: AutoML Edge
+Model objective: Image object detection
+Training source: AutoML training
+
+<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/Vertex%20AI%20%E2%80%93%20aegypti-project%20%E2%80%93%20Google%20Cloud%20Console.png?raw=true" alt="model-training" width="800" height="400">
+
+
+<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/Vertex%20AI%20%E2%80%93%20aegypti-project%20%E2%80%93%20details.png?raw=true" alt="model-training" width="500" height="500">
+
+<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/aegypti-mo%E2%80%A6bucket_01%20%E2%80%93%20Detalles%20del%20bucket%20%E2%80%93%20Cloud%C2%A0Storage%20%E2%80%93%20aegypti-project%20%E2%80%93%20Consola%20de%20Google%20Clo.png?raw=true" alt="model-training" width="600" height="400">
 
 ## Installation and configuration of the project
 This project uses Python and Docker to create a real-time mosquito detection and monitoring system. To install and configure the project, follow the steps below:
