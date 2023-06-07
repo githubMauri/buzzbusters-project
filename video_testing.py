@@ -12,7 +12,7 @@ import cv2
 
 #reference_picture = cv2.imread(picture_path)
 #cap = cv2.VideoCapture(1)
-cap = cv2.VideoCapture('video/mosquitoes.mp4')
+cap = cv2.VideoCapture('video/denguito.mp4')
 fps = 60  # FPS deseado
 cap.set(cv2.CAP_PROP_FPS, fps)  # configurar los FPS
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
