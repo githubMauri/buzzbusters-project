@@ -4,7 +4,7 @@
 ## Description
 The Mosquito Detection and Monitoring System is a solution developed to prevent and control mosquito-borne diseases in the Santa Cruz region of Bolivia. The system uses image processing techniques and machine learning algorithms to detect the density and distribution of mosquitoes in real-time, allowing for early detection and prevention efforts.
 
-The system includes a network of mosquito traps equipped with Raspberry Pi 3 for image capture and processing. The images are sent to Google Cloud Storage, where they are processed by machine learning models trained on Google AutoML. The results are then sent to Firebase, where they are displayed on an accessible dashboard for healthcare professionals and local authorities.
+The system includes a network of mosquito traps equipped with Raspberry Pi 4 for image capture and processing. The images are sent to Google Cloud Storage, where they are processed by machine learning models trained on Google AutoML. The results are then sent to Firebase, where they are displayed on an accessible dashboard for healthcare professionals and local authorities.
 
 This project utilizes deep learning techniques for mosquito detection. The solution employs a camera and detection algorithm to identify and count mosquitoes in real-time. Detection is performed using a model trained on Google AutoML Vision. The application runs on a Raspberry Pi 3 and utilizes Google cloud services such as Cloud Storage and Firebase for storage and visualization of the results. The solution can be easily scaled using Docker containers and scalable cloud services like Vertex AI.
 
@@ -28,7 +28,7 @@ This model was specifically trained for image object detection, using the AutoML
 
 For testing and deployment, we used a container approach. The trained model was exported as a TensorFlow SavedModel to be run on a Docker container. This allowed for easy deployment and scalability of the model on different platforms and environments. The containerization was done using Docker, which allowed us to package the model and its dependencies into a single unit that could be easily deployed on a variety of systems. This approach also ensures that the model is portable and can be easily moved between different cloud services or on-premises environments. The containerized model can be deployed on a Kubernetes cluster or any other container orchestration platform.
 
-## Model Training V2 (new model trained)
+## Model Training V2 (new model trained for TOP 100)
 
 This is our second model trained for the Mosquito Detection and Monitoring project.
 
@@ -72,12 +72,10 @@ Algorithm used: AutoML Edge
 Model objective: Image object detection
 Training source: AutoML training
 
-<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/Vertex%20AI%20%E2%80%93%20aegypti-project%20%E2%80%93%20Google%20Cloud%20Console.png?raw=true" alt="model-training" width="800" height="400">
+<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/Vertex%20AI%20%E2%80%93%20aegypti-project%20%E2%80%93%20V2%20-%20details.png?raw=true" alt="model-training" width="800" height="400">
 
 
-<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/Vertex%20AI%20%E2%80%93%20aegypti-project%20%E2%80%93%20details.png?raw=true" alt="model-training" width="500" height="500">
-
-<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/aegypti-mo%E2%80%A6bucket_01%20%E2%80%93%20Detalles%20del%20bucket%20%E2%80%93%20Cloud%C2%A0Storage%20%E2%80%93%20aegypti-project%20%E2%80%93%20Consola%20de%20Google%20Clo.png?raw=true" alt="model-training" width="600" height="400">
+<img src="https://github.com/githubMauri/buzzbusters-project/blob/master/assets/Vertex%C2%A0AI%20%E2%80%93%20aegypti-project%20%E2%80%93V2%20-%20%20CGC%20all%20details.png?raw=true" alt="model-training" width="500" height="500">
 
 ## Installation and configuration of the project
 This project uses Python and Docker to create a real-time mosquito detection and monitoring system. To install and configure the project, follow the steps below:
